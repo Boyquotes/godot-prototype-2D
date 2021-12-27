@@ -7,4 +7,4 @@ func _on_Timer_timeout():
 
 func _on_Area2D_body_entered(body):
 	if !Global.player_invincible:
-		body.Damage()
+		body.damage()
