@@ -20,6 +20,7 @@ var max_health = 3
 var health = max_health
 var damaged = false
 var dead = false
+var dead_in_water = false
 
 # other stuff
 var on_ground = true
@@ -28,10 +29,12 @@ var can_shoot = true
 # nodes
 onready var animator = $AnimatedSprite
 onready var coyoteTimer = $CoyoteTimer
+onready var sprite = $Sprite
 onready var bulletPos = $BulletPosition2D
 onready var hitPos = $HitPosition2D
 
 func _process(_delta):
+	print(velocity.y)
 	invincible()
 	animations() 
 	flip()
@@ -43,11 +46,14 @@ func _physics_process(_delta):
 	input()	
 	jump()
 	shoot()
-	
-	if dashing:
-		velocity.y = 0
-	elif not dashing and not damaged:
-		velocity.y += gravity
+
+	if dead_in_water:
+		velocity.y = 10
+	else:
+		if dashing:
+			velocity.y = 0
+		elif not dashing and not damaged:
+			velocity.y += gravity
 
 func input():
 	if !dead and !damaged:
@@ -79,11 +85,11 @@ func Dash():
 	
 func flip():
 	if velocity.x < 0:
-		animator.flip_h = true
+		sprite.flip_h = true
 		if bulletPos.position.x >= -1:
 			bulletPos.position.x *= -1
 	elif velocity.x > 0:
-		animator.flip_h = false
+		sprite.flip_h = false
 		if bulletPos.position.x <= -1:
 			bulletPos.position.x *= -1
 
@@ -111,7 +117,7 @@ func coyotejump():
 		coyoteTimer.start()
 
 func animations():
-	if !damaged and !dead:
+	if !damaged and !dead and !dead_in_water:
 		if !jumping:
 			if velocity.x != 0:
 				animator.play('run')
@@ -122,12 +128,16 @@ func animations():
 				animator.play('jump')
 			elif velocity.y > 0:
 				animator.play('fall')
-		
+
 	elif damaged and !dead:
 		animator.play('hit')
 
-	if dead:
-		animator.play('die')	
+	if dead_in_water:
+		animator.play("Drowning")
+
+#	if dead:
+#		pass
+#		animator.play('die')	
 
 func ground_check():
 	on_ground = true if is_on_floor() else false	
@@ -163,10 +173,17 @@ func die():
 	Global.player_dead = true
 	get_node("playerHurtbox/collider").set_deferred('disabled', true)
 	get_node("CollisionShape2D").set_deferred('disabled', true)
-	velocity = Vector2.ZERO
+	velocity.x = 0
 	yield(get_tree().create_timer(1), "timeout")
 	Global.player_dead = false
 	get_tree().reload_current_scene()
+
+func die_in_water():
+	dead_in_water = true
+	get_node("playerHurtbox/collider").set_deferred('disabled', true)
+	get_node("CollisionShape2D").set_deferred('disabled', true)
+#	yield(get_tree().create_timer(1),"timeout")
+#	get_tree().reload_current_scene()
 
 func invincible():
 	# se for invencivel , hurtbox é desligado, mais umas propriedades dos inimigos, que estão no script enemybase
@@ -180,15 +197,15 @@ func invincible():
 		get_node("playerHurtbox/collider").set_deferred('disabled', true)
 		set_modulate(Color(1,1,1,0.3))
 
-#função que trata da colisão com os inimigos e plataformas que caiem
+# função que trata da colisão com os inimigos e plataformas que caiem
 func collision():
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.collider
-		#plataformas que caiem
+		# plataformas que caiem
 		if collider.has_method('collide_with'):
 			collision.collider.collide_with(collision, self)
-		#inimigos
+		# inimigos
 		var is_stomping = (
 			collider is enemyBase and
 			is_on_floor() and
@@ -199,7 +216,12 @@ func collision():
 			velocity.y = -300
 			(collider as enemyBase).die()
 
-#colisões
+		# agua
+		if collider.is_in_group("water"):
+			die_in_water()
+			# TODO : tentar desligar colliders nas animações
+
+# colisões
 func _on_playerHurtbox_body_entered(_body):
 	return dashing
 	damage()
