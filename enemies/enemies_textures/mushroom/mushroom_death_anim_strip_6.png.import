@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tileset.png-781317dbeac795ab5fa88723bddea64c.stex"
+path="res://.import/mushroom_death_anim_strip_6.png-ed86c0b1e70b3d66ccc07e07b3d78429.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tileset/tileset.png"
-dest_files=[ "res://.import/tileset.png-781317dbeac795ab5fa88723bddea64c.stex" ]
+source_file="res://enemies/enemies_textures/mushroom/mushroom_death_anim_strip_6.png"
+dest_files=[ "res://.import/mushroom_death_anim_strip_6.png-ed86c0b1e70b3d66ccc07e07b3d78429.stex" ]
 
 [params]
 

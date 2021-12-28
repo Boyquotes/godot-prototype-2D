@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tileset.png-781317dbeac795ab5fa88723bddea64c.stex"
+path="res://.import/slime_spritesheet.png-60d6d546da14ae0a79ac1a588f028736.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tileset/tileset.png"
-dest_files=[ "res://.import/tileset.png-781317dbeac795ab5fa88723bddea64c.stex" ]
+source_file="res://enemies/enemies_textures/slime/slime_spritesheet.png"
+dest_files=[ "res://.import/slime_spritesheet.png-60d6d546da14ae0a79ac1a588f028736.stex" ]
 
 [params]
 

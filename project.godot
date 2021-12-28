@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "enemyBase",
 "language": "GDScript",
-"path": "res://Scripts/Enemies/EnemyBase.gd"
+"path": "res://enemies/enemy_base.gd"
 } ]
 _global_script_class_icons={
 "enemyBase": ""
@@ -20,17 +20,18 @@ _global_script_class_icons={
 
 [application]
 
-config/name="1stGame"
-run/main_scene="res://Levels/Level01.tscn"
-config/icon="res://icon.png"
+config/name="Prototype"
+run/main_scene="res://levels/Level01.tscn"
 
 [autoload]
 
-Global="*res://Scripts/Global.gd"
+Global="*res://Global.gd"
 
 [display]
 
 window/size/height=720
+window/size/resizable=false
+window/size/fullscreen=true
 window/vsync/use_vsync=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
@@ -97,5 +98,4 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 2d/snapping/use_gpu_pixel_snap=true
-environment/default_environment="res://default_env.tres"
 quality/dynamic_fonts/use_oversampling=false

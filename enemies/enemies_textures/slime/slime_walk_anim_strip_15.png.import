@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tileset.png-781317dbeac795ab5fa88723bddea64c.stex"
+path="res://.import/slime_walk_anim_strip_15.png-8a74d1c852cdd68b8a28d4e18260c667.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tileset/tileset.png"
-dest_files=[ "res://.import/tileset.png-781317dbeac795ab5fa88723bddea64c.stex" ]
+source_file="res://enemies/enemies_textures/slime/slime_walk_anim_strip_15.png"
+dest_files=[ "res://.import/slime_walk_anim_strip_15.png-8a74d1c852cdd68b8a28d4e18260c667.stex" ]
 
 [params]
 

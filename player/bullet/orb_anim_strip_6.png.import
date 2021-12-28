@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tileset.png-781317dbeac795ab5fa88723bddea64c.stex"
+path="res://.import/orb_anim_strip_6.png-66ee7a092ef7cbc2d9d479d613c94ec5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tileset/tileset.png"
-dest_files=[ "res://.import/tileset.png-781317dbeac795ab5fa88723bddea64c.stex" ]
+source_file="res://player/bullet/orb_anim_strip_6.png"
+dest_files=[ "res://.import/orb_anim_strip_6.png-66ee7a092ef7cbc2d9d479d613c94ec5.stex" ]
 
 [params]
 
