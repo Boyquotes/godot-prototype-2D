@@ -15,8 +15,8 @@
 [ext_resource path="res://world_environment/platform_left.tscn" type="PackedScene" id=13]
 [ext_resource path="res://collectibles/coin.tscn" type="PackedScene" id=14]
 [ext_resource path="res://world_environment/platform.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Scenes/Enemies/MushroomEnemy.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/Enemies/SlimeEnemy.tscn" type="PackedScene" id=17]
+[ext_resource path="res://enemies/mushroom_enemy.tscn" type="PackedScene" id=16]
+[ext_resource path="res://enemies/slime_enemy.tscn" type="PackedScene" id=17]
 [ext_resource path="res://tileset/tileset.tres" type="TileSet" id=18]
 [ext_resource path="res://Assets/tiles and background_foreground/bg_1.png" type="Texture" id=19]
 [ext_resource path="res://Assets/tiles and background_foreground/bg_2.png" type="Texture" id=20]
@@ -209,6 +209,7 @@ position = Vector2( 237, 312 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 405, 296 )
+scale = Vector2( 1, 1 )
 collision_mask = 290
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

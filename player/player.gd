@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
 const gravity = 20
-const Bullet = preload("res://Scenes/Player/Bullet.tscn")
-const Jump_Dust = preload("res://Scenes/Player/JumpDust.tscn")
-const Hit_Particle = preload("res://Scenes/Player/hitParticle.tscn")
+const Bullet = preload("res://player/bullet.tscn")
+const Jump_Dust = preload("res://player/jump_dust.tscn")
+const Hit_Particle = preload("res://player/hit_particle.tscn")
 
 # movement
 var move = null
@@ -34,7 +34,6 @@ onready var bulletPos = $BulletPosition2D
 onready var hitPos = $HitPosition2D
 
 func _process(_delta):
-	print(velocity.y)
 	invincible()
 	animations() 
 	flip()
@@ -56,7 +55,7 @@ func _physics_process(_delta):
 			velocity.y += gravity
 
 func input():
-	if !dead and !damaged:
+	if !dead and !damaged and !dead_in_water:
 		move = (
 			Input.get_action_strength("ui_right") -
 			Input.get_action_strength("ui_left")
@@ -135,9 +134,8 @@ func animations():
 	if dead_in_water:
 		animator.play("Drowning")
 
-#	if dead:
-#		pass
-#		animator.play('die')	
+	if dead:
+		animator.play('die')
 
 func ground_check():
 	on_ground = true if is_on_floor() else false	
@@ -180,10 +178,11 @@ func die():
 
 func die_in_water():
 	dead_in_water = true
+	velocity.x = 0
 	get_node("playerHurtbox/collider").set_deferred('disabled', true)
 	get_node("CollisionShape2D").set_deferred('disabled', true)
-#	yield(get_tree().create_timer(1),"timeout")
-#	get_tree().reload_current_scene()
+	yield(get_tree().create_timer(1),"timeout")
+	get_tree().reload_current_scene()
 
 func invincible():
 	# se for invencivel , hurtbox é desligado, mais umas propriedades dos inimigos, que estão no script enemybase
@@ -215,7 +214,7 @@ func collision():
 		if is_stomping:
 			velocity.y = -300
 			(collider as enemyBase).die()
-
+			
 		# agua
 		if collider.is_in_group("water"):
 			die_in_water()

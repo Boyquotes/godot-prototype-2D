@@ -45,7 +45,7 @@ func _checkSurroundings():
 		idle = false
 		speed = 30
 
-func Die():
+func die():
 	#Esta função está a ser chamada no objeto player
 	dead = true
 	get_node("CollisionShape2D").set_deferred('disabled', true)
@@ -57,7 +57,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		
 func _on_EnemyHitbox_area_entered(area):
 	if area.name == "Bullet":
-		Die()
+		die()
 
 func _playerInvincible():
 	if !dead:

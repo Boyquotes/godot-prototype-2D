@@ -392,8 +392,8 @@ position = Vector2( 8, -4.54485e-07 )
 [node name="HitPosition2D" type="Position2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 3 )
-hframes = 4
+texture = ExtResource( 6 )
+hframes = 3
 
 [node name="AnimatedSprite" type="AnimationPlayer" parent="."]
 autoplay = "idle"

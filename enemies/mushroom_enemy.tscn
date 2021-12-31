@@ -1,37 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Assets/enemies sprites/mushroom/mushroom_walk_anim_strip_8.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Enemies/Slime.gd" type="Script" id=2]
-[ext_resource path="res://Assets/enemies sprites/mushroom/mushroom_hit_anim_strip_3.png" type="Texture" id=3]
-[ext_resource path="res://Assets/enemies sprites/mushroom/mushroom_death_anim_strip_6.png" type="Texture" id=4]
-[ext_resource path="res://Assets/enemies sprites/mushroom/mushroom_crushed_anim_strip_6.png" type="Texture" id=5]
-
-[sub_resource type="Animation" id=6]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:hframes")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 7 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 5 ]
-}
+[ext_resource path="res://enemies/enemies_textures/mushroom/mushroom_walk_anim_strip_8.png" type="Texture" id=1]
+[ext_resource path="res://enemies/enemy.gd" type="Script" id=2]
+[ext_resource path="res://enemies/enemies_textures/mushroom/mushroom_death_anim_strip_6.png" type="Texture" id=4]
+[ext_resource path="res://enemies/enemies_textures/mushroom/mushroom_crushed_anim_strip_6.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "death"
@@ -71,45 +43,6 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6 ]
-}
-
-[sub_resource type="Animation" id=2]
-length = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 3 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 3 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -206,13 +139,10 @@ position = Vector2( -8.61242, 0.1655 )
 texture = ExtResource( 4 )
 offset = Vector2( 8.61242, -0.1655 )
 hframes = 7
-frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "walk"
-anims/RESET = SubResource( 6 )
 anims/death = SubResource( 1 )
-anims/hit = SubResource( 2 )
 anims/idle = SubResource( 3 )
 anims/walk = SubResource( 4 )
 
